@@ -1,22 +1,7 @@
-import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
+import { Prop, Schema, SchemaFactory, raw } from "@nestjs/mongoose";
 import { HydratedDocument } from "mongoose";
 
 export type ReportDocument = HydratedDocument<RecievedReport>;
-
-@Schema()
-export class RecievedReport{
-
-    @Prop()
-    report:Reports;
-
-    @Prop()
-    idMarket:string;
-
-    @Prop()
-    idMulta:string;
-
-}
-
 interface Reports{
     id:string;
     reason:string;
@@ -25,9 +10,29 @@ interface Reports{
 
 interface Product{
     id:string;
-    brand:string;
     name:string;
     urlImg:string;
+}
+@Schema()
+export class RecievedReport{
+
+    @Prop(raw({
+        id: { type: String },
+        reason: { type: String },
+        product: {
+            id: { type: String },
+            name: { type: String },
+            urlImg: { type: String }
+        }
+    }))
+    report:Reports;
+
+    @Prop()
+    idMarket:string;
+
+    @Prop({default:null})
+    idMulta:string;
+
 }
 
 export const RecievedReportSchema = SchemaFactory.createForClass(RecievedReport);

@@ -15,6 +15,7 @@ export class RecievedReportsService {
         if(!reportRecieved){
             throw new RpcException("empty params");
         }
+        console.log(reportRecieved);
         const createdReport = new this.recievedReportModel(reportRecieved);
         const savedReport = await createdReport.save();
         return savedReport;
