@@ -8,8 +8,8 @@ import { CONNECTION } from './configs/mogo-connection';
 
 @Module({
   imports: [
-    MultaModule,
     RecievedReportsModule,
+    MultaModule,
     MongooseModule.forRoot(CONNECTION),
   ],
   controllers: [AppController],
