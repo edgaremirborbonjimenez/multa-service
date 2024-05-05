@@ -14,20 +14,8 @@ export class RabbitService {
         routingKey: 'reports-route',
         queue: 'reports-queue',
     })
-    async reportsHandler(report:any){
-        const reportRecieved:RecievedReportDTO ={
-            idMarket:report.market.id,
-            report: {
-                id:report._id,
-                reason:report.reason,
-                product:{
-                    id:report.product.id,
-                    name: report.product.name,
-                    urlImg: report.product.urlImg
-                }
-            }
-        }
-        console.log(`Report recieved: ${JSON.stringify(reportRecieved)}`);
-        this.rrService.create(reportRecieved);
+    async reportsHandler(report:RecievedReportDTO){
+        console.log(`Report recieved: ${JSON.stringify(report)}`);
+        this.rrService.create(report);
     } 
 }

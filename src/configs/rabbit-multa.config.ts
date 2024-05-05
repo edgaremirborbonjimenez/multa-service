@@ -1,6 +1,6 @@
 import { RabbitMQModule } from "@golevelup/nestjs-rabbitmq";
 
-export const RabbitMultaConfig = RabbitMQModule.forRoot(RabbitMQModule,{
+export const RabbitConfig = RabbitMQModule.forRoot(RabbitMQModule,{
     exchanges:[
         {
             name: 'notifier',
