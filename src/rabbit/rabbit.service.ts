@@ -15,7 +15,7 @@ export class RabbitService {
         queue: 'reports-queue',
     })
     async reportsHandler(report:RecievedReportDTO){
-        console.log(`Report recieved: ${JSON.stringify(report)}`);
+        console.log(`[X] Report recieved: ${JSON.stringify(report)}`);
         this.rrService.create(report);
     } 
 }
